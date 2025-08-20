@@ -9,7 +9,7 @@ function Header() {
 
   return (
     <>
-    <header className="sticky top-0 z-50 bg-white">
+    <header className="sticky top-0 z-50 bg-white w-full">
         {/* Top Bar */}
       <div className="flex justify-center items-center bg-[#3FBBC0] py-2 px-12 w-full md:justify-between">
         <div className="flex items-center text-white gap-2 hidden md:flex">
