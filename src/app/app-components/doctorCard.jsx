@@ -1,0 +1,75 @@
+"use client";
+import { FaHeartbeat, FaBrain, FaXRay, FaStethoscope } from "react-icons/fa";
+const cardsData = [
+  {
+    id: 1,
+    department: "Cardiology",
+    explanation: "Specializes in heart disorders, cardiovascular care.",
+    icon: FaHeartbeat,
+  },
+  {
+    id: 2,
+    department: "Neurology",
+    explanation: "Focuses on disorders of the brain and nervous system.",
+    icon: FaBrain,
+  },
+  {
+    id: 3,
+    department: "Radiology",
+    explanation: "Uses imaging technology like X-rays and MRIs for diagnosis.",
+    icon: FaXRay,
+  },
+  {
+    id: 4,
+    department: "Medicine",
+    explanation: "Covers general diagnosis and healthcare services.",
+    icon: FaStethoscope,
+  },
+];
+function Cards() {
+  // return (
+  //   <div className="flex flex-col justify-center items-center py-4 px-4 mt-10 md:flex-row gap-4">
+  //     {cardsData.map((item) => {
+  //       return (
+  //         <div
+  //           key={item.id}
+  //           className="relative group flex flex-col items-center py-4 px-4 md:px-6 border-2 rounded-sm shadow-sm cursor-pointer overflow-hidden"
+  //         >
+  //           {/* Animated Background Layer */}
+  //           <div className="absolute inset-0 bg-[#3FBBC0] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out z-0" />
+
+  //           {/* Card Content */}
+  //           <div className="relative z-10 flex flex-col items-center gap-2 transition-colors duration-300 group-hover:text-white">
+  //             <div className="flex items-center justify-center gap-4 text-3xl">
+  //               <span className="text-[#3FBBC0] group-hover:text-white transition-colors duration-300">{item.icon}</span>
+  //               <h1 className="font-bold">{item.department}</h1>
+  //             </div>
+  //             <p className="text-center">{item.explanation}</p>
+  //           </div>
+  //         </div>
+  //       );
+  //     })}
+  //   </div>
+  // );
+  return (
+    <div className="flex flex-col justify-center items-center py-4 px-4 mt-10 md:flex-row gap-4 ">
+      {cardsData.map((item) => {
+        const Icon=item.icon;
+        return (
+          <div
+            key={item.id}
+            className="flex flex-col items-center py-4 px-4 md:px-6 relative border-2 rounded-sm shadow-sm cursor-pointer hover:bg-[#3FBBC0] hover:text-white transition-colors duration-300 overflow-hidden "
+          >
+            <div className="flex flex-col items-center justify-center gap-4">
+             <Icon className="text-gray-700 text-3xl " />
+              <h1 className="font-bold text-3xl">{item.department}</h1>
+            </div>
+            <p className="text-center text-[#6b6b6b]">{item.explanation}</p>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+export default Cards;
