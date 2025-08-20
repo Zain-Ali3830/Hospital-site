@@ -31,7 +31,7 @@ function Header() {
 
         {/* Desktop Menu */}
         <ul className="hidden lg:flex justify-center items-center gap-5 font-medium text-sm">
-          {[{id:1,name:'Home',link:'/'},{id:2,name:'About',link:'pages/about'},{id:3,name:'Services',link:'pages/services'},{id:4,name:'Departments',link:'pages/departments'},{id:5,name:'Contact',link:'pages/contact'}].map((item) => (
+          {[{id:1,name:'Home',link:'/'},{id:2,name:'About',link:'pages/about'},{id:3,name:'Services',link:'/pages/services'},{id:4,name:'Departments',link:'pages/departments'},{id:5,name:'Contact',link:'pages/contact'}].map((item) => (
             <li key={item.id}>
              <Link href={item.link}>
              <span className="text-[#AFAFAF] hover:text-[#3FBBC0]">
