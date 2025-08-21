@@ -71,19 +71,19 @@ function Footer() {
         {/* Section 2 */}
         <div className="flex flex-col gap-2">
           <h2 className="text-xl font-bold text-[#555555]">Useful Links</h2>
-          <a href="" className="text-sm text-[#6b6b6b] hover:text-[#3FBBC0]">
+          <a href="/" className="text-sm text-[#6b6b6b] hover:text-[#3FBBC0]">
             Home
           </a>
-          <a href="" className="text-sm text-[#6b6b6b] hover:text-[#3FBBC0]">
+          <a href="/pages/about" className="text-sm text-[#6b6b6b] hover:text-[#3FBBC0]">
             About us
           </a>
-          <a href="" className="text-sm text-[#6b6b6b] hover:text-[#3FBBC0]">
+          <a href="/pages/services" className="text-sm text-[#6b6b6b] hover:text-[#3FBBC0]">
             Services
           </a>
-          <a href="" className="text-sm text-[#6b6b6b] hover:text-[#3FBBC0]">
+          <a href="/pages/departments" className="text-sm text-[#6b6b6b] hover:text-[#3FBBC0]">
             Departments
           </a>
-          <a href="" className="text-sm text-[#6b6b6b] hover:text-[#3FBBC0]">
+          <a href="/pages/contact" className="text-sm text-[#6b6b6b] hover:text-[#3FBBC0]">
             Contact{" "}
           </a>
         </div>
