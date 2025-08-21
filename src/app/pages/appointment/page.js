@@ -68,10 +68,10 @@ function Appointment() {
               setFormData({ ...formData, doctor: e.target.value })
             }
             name="doctor"
-            value={formData.doctor}
+            value={formData.doctor || "Select Doctor"}
             className="select select-bordered w-full px-4 py-2 border rounded-sm focus:outline-none focus:ring-2 focus:ring-[#3FBBC0]"
           >
-            <option disabled selected hidden className="text-[#6b6b6b]">
+            <option disabled selected hidden >
               Select Doctor
             </option>
             <option>Doctor 1</option>
@@ -85,7 +85,7 @@ function Appointment() {
               setFormData({ ...formData, department: e.target.value })
             }
             name="department"
-            value={formData.department}
+            value={formData.department||"Select Department"}
             className="select select-bordered w-full px-4 py-2 border rounded-sm focus:outline-none focus:ring-2 focus:ring-[#3FBBC0]"
           >
             <option disabled selected hidden className="text-[#6b6b6b]">
@@ -134,6 +134,7 @@ function Appointment() {
                 }
               );
               setFormData({ ...formData, date: formatted });
+              console.log(formData);
               toast.success("Appointment Booked Successfully");
               setFormData({
                 name: "",
