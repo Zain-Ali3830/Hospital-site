@@ -27,30 +27,6 @@ const cardsData = [
   },
 ];
 function Cards() {
-  // return (
-  //   <div className="flex flex-col justify-center items-center py-4 px-4 mt-10 md:flex-row gap-4">
-  //     {cardsData.map((item) => {
-  //       return (
-  //         <div
-  //           key={item.id}
-  //           className="relative group flex flex-col items-center py-4 px-4 md:px-6 border-2 rounded-sm shadow-sm cursor-pointer overflow-hidden"
-  //         >
-  //           {/* Animated Background Layer */}
-  //           <div className="absolute inset-0 bg-[#3FBBC0] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out z-0" />
-
-  //           {/* Card Content */}
-  //           <div className="relative z-10 flex flex-col items-center gap-2 transition-colors duration-300 group-hover:text-white">
-  //             <div className="flex items-center justify-center gap-4 text-3xl">
-  //               <span className="text-[#3FBBC0] group-hover:text-white transition-colors duration-300">{item.icon}</span>
-  //               <h1 className="font-bold">{item.department}</h1>
-  //             </div>
-  //             <p className="text-center">{item.explanation}</p>
-  //           </div>
-  //         </div>
-  //       );
-  //     })}
-  //   </div>
-  // );
   return (
     <div className="flex flex-col justify-center items-center py-4 px-4 mt-10 md:flex-row gap-4 ">
       {cardsData.map((item) => {
