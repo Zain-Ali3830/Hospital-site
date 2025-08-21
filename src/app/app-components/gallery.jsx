@@ -45,37 +45,40 @@ function Gallery() {
 
   return (
     <>
-    <div className="flex flex-col justify-center items-center py-4 px-4 mt-10 gap-5">
-         <h1 className="text-3xl font-bold text-[#555555]">Gallery</h1>
-         <div className="border-b-4 border-[#3FBBC0] w-10"></div>
-         <p className="text-[#6b6b6b]">Discover our hospital gallery showcasing modern facilities and compassionate care in action.</p>
-       </div>
-    <div
-      className="overflow-hidden w-full bg-gray-100 p-4 rounded-xl shadow"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <motion.div
-        className="flex gap-4 w-max"
-        ref={sliderRef}
-        animate={controls}
+      <div className="flex flex-col justify-center items-center py-4 px-4 mt-10 gap-5">
+        <h1 className="text-3xl font-bold text-[#555555]">Gallery</h1>
+        <div className="border-b-4 border-[#3FBBC0] w-10"></div>
+        <p className="text-[#6b6b6b]">
+          Discover our hospital gallery showcasing modern facilities and
+          compassionate care in action.
+        </p>
+      </div>
+      <div
+        className="overflow-hidden w-full bg-gray-100 p-4 rounded-xl shadow"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
-        {[...images, ...images].map((src, i) => (
-          <div
-            key={i}
-            className="min-w-[150px] h-[150px] rounded-md overflow-hidden border border-gray-300"
-          >
-            <img
-              src={src}
-              alt={`Person ${i + 1}`}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        ))}
-      </motion.div>
-    </div>
+        <motion.div
+          className="flex gap-4 w-max"
+          ref={sliderRef}
+          animate={controls}
+        >
+          {[...images, ...images].map((src, i) => (
+            <div
+              key={i}
+              className="min-w-[150px] h-[150px] rounded-md overflow-hidden border border-gray-300"
+            >
+              <img
+                src={src}
+                alt={`Person ${i + 1}`}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
+        </motion.div>
+      </div>
     </>
   );
-};
+}
 
 export default Gallery;

@@ -54,14 +54,14 @@ function Cards() {
   return (
     <div className="flex flex-col justify-center items-center py-4 px-4 mt-10 md:flex-row gap-4 ">
       {cardsData.map((item) => {
-        const Icon=item.icon;
+        const Icon = item.icon;
         return (
           <div
             key={item.id}
             className="flex flex-col items-center py-4 px-4 md:px-6 relative border-2 rounded-sm shadow-sm cursor-pointer hover:bg-[#3FBBC0] hover:text-white transition-colors duration-300 overflow-hidden "
           >
             <div className="flex flex-col items-center justify-center gap-4">
-             <Icon className="text-gray-700 text-3xl " />
+              <Icon className="text-gray-700 text-3xl " />
               <h1 className="font-bold text-3xl">{item.department}</h1>
             </div>
             <p className="text-center text-[#6b6b6b]">{item.explanation}</p>

@@ -26,7 +26,10 @@ export default function ImageCarousel() {
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {slides.map((slide) => (
-          <div key={slide.id} className="w-full flex-shrink-0 h-[250px] sm:h-[350px] md:h-[500px]">
+          <div
+            key={slide.id}
+            className="w-full flex-shrink-0 h-[250px] sm:h-[350px] md:h-[500px]"
+          >
             <img
               src={slide.src}
               alt={slide.alt}
@@ -38,4 +41,3 @@ export default function ImageCarousel() {
     </div>
   );
 }
-
