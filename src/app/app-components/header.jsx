@@ -57,9 +57,11 @@ function Header() {
           </button>
 
           {/* Desktop Button */}
-          <button className="hidden md:block bg-[#3FBBC0] text-white py-2 px-4 rounded-sm cursor-pointer hover:bg-[#61c9cd]">
-            Make an Appointment
+          <Link href={'/pages/appointment'}>
+          <button  className="hidden md:block bg-[#3FBBC0] text-white py-2 px-4 rounded-sm cursor-pointer hover:bg-[#61c9cd]">
+           Make an Appointment
           </button>
+          </Link>
         </nav>
 
         {/* Modal for Mobile Menu */}
@@ -89,9 +91,11 @@ function Header() {
                     </Link>
                   </li>
                 ))}
+                <Link href={'/pages/appointment'}>
                 <button className="bg-[#3FBBC0] text-white py-2 px-4 rounded-sm cursor-pointer hover:bg-[#61c9cd]">
                   Make an Appointment
                 </button>
+                </Link>
               </ul>
             </div>
           </div>

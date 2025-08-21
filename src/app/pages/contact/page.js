@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { IoLocationOutline } from "react-icons/io5";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
@@ -6,25 +6,34 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { Toaster } from "react-hot-toast";
 function Contact() {
-    const[formData, setFormData] = useState({name:"", email:"",subject:"", message:""});
-    function handleChange(e){
-        setFormData({...formData, [e.target.name]: e.target.value});
-    }
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  function handleChange(e) {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  }
 
-    function handleSubmit(e){
-        e.preventDefault();
-        if(!formData.name || !formData.email || !formData.subject || !formData.message){
-            toast.error("Please fill all the fields");
-            return;
-        }
-        setFormData({name:"", email:"",subject:"", message:""});
-        toast.success("Message sent successfully");
-        console.log(formData);
-
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.subject ||
+      !formData.message
+    ) {
+      toast.error("Please fill all the fields");
+      return;
     }
+    setFormData({ name: "", email: "", subject: "", message: "" });
+    toast.success("Message sent successfully");
+    console.log(formData);
+  }
   return (
     <>
-    <Toaster position="top-center" reverseOrder={false} />
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="flex flex-col justify-center items-center py-4 px-4 mt-10 gap-5">
         <h1 className="text-3xl font-bold text-[#555555]">Contact Us</h1>
         <div className="border-b-4 border-[#3FBBC0] w-10"></div>
@@ -78,17 +87,45 @@ function Contact() {
 
         {/* Form */}
         <div className="flex flex-col justify-center items-center py-4 px-12 gap-5 border shadow-sm rounded-sm">
-            <div className="flex flex-col justify-center items-center py-6  gap-5 w-full md:flex-row ">
-                <input type="text" name="name" placeholder="Name" value={formData.name}
-  onChange={handleChange} className="px-4 py-2 w-full  border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#3FBBC0]" />
-                <input type="email" name="email" placeholder="Email" value={formData.email}
-  onChange={handleChange} className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#3FBBC0]" />
-            </div>
-            <input type="text" placeholder="Subject" name="subject" value={formData.subject}
-  onChange={handleChange} className="px-4 py-2 border border-gray-300 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-[#3FBBC0]" />
-            <textarea placeholder="Message" name="message" value={formData.message}
-  onChange={handleChange} className="px-4 py-2 w-full h-40 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#3FBBC0]"></textarea>
-            <button onClick={handleSubmit} className="bg-[#3FBBC0] text-white px-10 py-2 rounded-md hover:bg-[#3FBBC0]/80 transition duration-300 cursor-pointer font-semibold">Submit</button>
+          <div className="flex flex-col justify-center items-center py-6  gap-5 w-full md:flex-row ">
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              value={formData.name}
+              onChange={handleChange}
+              className="px-4 py-2 w-full  border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#3FBBC0]"
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+              className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#3FBBC0]"
+            />
+          </div>
+          <input
+            type="text"
+            placeholder="Subject"
+            name="subject"
+            value={formData.subject}
+            onChange={handleChange}
+            className="px-4 py-2 border border-gray-300 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-[#3FBBC0]"
+          />
+          <textarea
+            placeholder="Message"
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            className="px-4 py-2 w-full h-40 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#3FBBC0]"
+          ></textarea>
+          <button
+            onClick={handleSubmit}
+            className="bg-[#3FBBC0] text-white px-10 py-2 rounded-md hover:bg-[#3FBBC0]/80 transition duration-300 cursor-pointer font-semibold"
+          >
+            Submit
+          </button>
         </div>
       </div>
     </>
