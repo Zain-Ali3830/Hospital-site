@@ -1,7 +1,8 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { Toaster } from "react-hot-toast";
+import axios from "axios";
 function Appointment() {
   const [formData, setFormData] = useState({
     name: "",
@@ -12,6 +13,56 @@ function Appointment() {
     doctor: "",
     department: "",
   });
+
+  const [doctors, setDoctors] = useState([]);
+
+  function handleFormData(e) {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const formatted = new Date(formData.date).toLocaleString("en-GB", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    });
+    const updatedData = { ...formData, date: formatted };
+    console.log(updatedData);
+    try {
+      const result = await axios.post(
+        "http://localhost:4000/api/appointment",
+        updatedData
+      );
+      // console.log('Result',result)
+      toast.success(result.data.message);
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        date: "",
+        message: "",
+        doctor: "",
+        department: "",
+      });
+    } catch (error) {
+      toast.error(error.response.data.message || "Something went wrong");
+    }
+  }
+
+  useEffect(() => {
+    axios
+      .get(
+        `http://localhost:4000/api/getemergencydoctors?department=${formData.department}`
+      )
+      .then((res) => setDoctors(res.data));
+  }, [formData.department]);
+
+  console.log(doctors);
+
   return (
     <>
       <Toaster position="top-center" reverseOrder={false} />
@@ -30,7 +81,7 @@ function Appointment() {
             placeholder="Your Name"
             name="name"
             value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            onChange={handleFormData}
             className="input input-bordered w-full px-4 py-2 border rounded-sm focus:outline-none focus:ring-2 focus:ring-[#3FBBC0]"
           />
           <input
@@ -38,9 +89,7 @@ function Appointment() {
             placeholder="Your Email"
             name="email"
             value={formData.email}
-            onChange={(e) =>
-              setFormData({ ...formData, email: e.target.value })
-            }
+            onChange={handleFormData}
             className="input input-bordered w-full px-4 py-2 border rounded-sm focus:outline-none focus:ring-2 focus:ring-[#3FBBC0]"
           />
           <input
@@ -48,9 +97,7 @@ function Appointment() {
             placeholder="Your Phone"
             name="phone"
             value={formData.phone}
-            onChange={(e) =>
-              setFormData({ ...formData, phone: e.target.value })
-            }
+            onChange={handleFormData}
             className="input input-bordered w-full px-4 py-2 border rounded-sm focus:outline-none focus:ring-2 focus:ring-[#3FBBC0]"
           />
         </div>
@@ -60,42 +107,42 @@ function Appointment() {
             type="datetime-local"
             name="date"
             value={formData.date}
-            onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+            onChange={handleFormData}
             className="input input-bordered w-full px-4 py-2 border rounded-sm focus:outline-none focus:ring-2 focus:ring-[#3FBBC0]"
           />
           <select
-            onChange={(e) =>
-              setFormData({ ...formData, doctor: e.target.value })
-            }
-            name="doctor"
-            value={formData.doctor || "Select Doctor"}
-            className="select select-bordered w-full px-4 py-2 border rounded-sm focus:outline-none focus:ring-2 focus:ring-[#3FBBC0]"
-          >
-            <option disabled selected hidden >
-              Select Doctor
-            </option>
-            <option>Doctor 1</option>
-            <option>Doctor 2</option>
-            <option>Doctor 3</option>
-            <option>Doctor 4</option>
-            <option>Doctor 5</option>
-          </select>
-          <select
-            onChange={(e) =>
-              setFormData({ ...formData, department: e.target.value })
-            }
+            onChange={handleFormData}
             name="department"
-            value={formData.department||"Select Department"}
+            value={formData.department || "Select Department"}
             className="select select-bordered w-full px-4 py-2 border rounded-sm focus:outline-none focus:ring-2 focus:ring-[#3FBBC0]"
           >
             <option disabled selected hidden className="text-[#6b6b6b]">
               Select Department
             </option>
-            <option>Department 1</option>
-            <option>Department 2</option>
-            <option>Department 3</option>
-            <option>Department 4</option>
-            <option>Department 5</option>
+            <option>Cardiology</option>
+            <option>Surgery</option>
+            <option>Neurology</option>
+            <option>Orthopedics</option>
+            <option>Radiology</option>
+          </select>
+          <select
+            onChange={handleFormData}
+            name="doctor"
+            value={formData.doctor || "Select Doctor"}
+            className="select select-bordered w-full px-4 py-2 border rounded-sm focus:outline-none focus:ring-2 focus:ring-[#3FBBC0]"
+          >
+            <option disabled selected hidden>
+              Select Doctor
+            </option>
+            {doctors.length > 0 ? (
+              doctors.map((doc) => (
+                <option key={doc.id} value={doc.id}>
+                  {`Dr.${doc.name}`}
+                </option>
+              ))
+            ) : (
+              <option disabled>Please Select Department</option>
+            )}
           </select>
         </div>
 
@@ -103,50 +150,11 @@ function Appointment() {
           placeholder="Message (Optional)"
           name="message"
           value={formData.message}
-          onChange={(e) =>
-            setFormData({ ...formData, message: e.target.value })
-          }
+          onChange={handleFormData}
           className="textarea textarea-bordered w-full h-32 px-4 py-2 border rounded-sm focus:outline-none focus:ring-2 focus:ring-[#3FBBC0]"
         />
         <button
-          onClick={(e) => {
-            e.preventDefault();
-            if (
-              !formData.name ||
-              !formData.email ||
-              !formData.phone ||
-              !formData.date ||
-              !formData.doctor ||
-              !formData.department
-            ) {
-              toast.error("Please fill all the fields");
-              return;
-            } else {
-              const formatted = new Date(formData.date).toLocaleString(
-                "en-GB",
-                {
-                  day: "2-digit",
-                  month: "long",
-                  year: "numeric",
-                  hour: "2-digit",
-                  minute: "2-digit",
-                  hour12: true,
-                }
-              );
-              setFormData({ ...formData, date: formatted });
-              console.log(formData);
-              toast.success("Appointment Booked Successfully");
-              setFormData({
-                name: "",
-                email: "",
-                phone: "",
-                date: "",
-                message: "",
-                doctor: "",
-                department: "",
-              });
-            }
-          }}
+          onClick={handleSubmit}
           className=" text-semibold bg-[#3FBBC0] py-2 px-6 border-2 border-[#3FBBC0] text-white hover:bg-white transition duration-300 hover:text-[#3FBBC0] rounded-sm cursor-pointer"
         >
           Make an Appointment

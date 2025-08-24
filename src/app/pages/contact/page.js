@@ -5,6 +5,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { Toaster } from "react-hot-toast";
+import axios from "axios";
 function Contact() {
   const [formData, setFormData] = useState({
     name: "",
@@ -16,20 +17,23 @@ function Contact() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    if (
-      !formData.name ||
-      !formData.email ||
-      !formData.subject ||
-      !formData.message
-    ) {
-      toast.error("Please fill all the fields");
-      return;
+    try {
+      const res = await axios.post(
+        "http://localhost:4000/api/contact",
+        formData
+      );
+      toast.success(res.data.message);
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+    } catch (err) {
+      toast.error(err.response.data.message || "Something went wrong");
     }
-    setFormData({ name: "", email: "", subject: "", message: "" });
-    toast.success("Message sent successfully");
-    console.log(formData);
   }
   return (
     <>
