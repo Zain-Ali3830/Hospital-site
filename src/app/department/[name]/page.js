@@ -19,7 +19,7 @@ function DepartmentPage({ params }) {
   });
 
   useEffect(() => {
-    axios.get(`http://localhost:4000/api/doctors/getdoctors?spec=${name}`)
+    axios.get(`https://hospital-backend-production-7f96.up.railway.app/api/doctors/getdoctors?spec=${name}`)
       .then(res => {
         setDoctors(res.data);
       });
