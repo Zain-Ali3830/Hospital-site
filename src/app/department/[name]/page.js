@@ -70,8 +70,8 @@ function DepartmentPage({ params }) {
               className="w-full h-72 object-cover"
             />
             <div className="p-6">
-              <h2 className="text-xl font-bold text-gray-800 mb-2">{doctor.name}</h2>
-              <p className="text-teal-500 font-semibold mb-2">{doctor.spec}</p>
+              <h2 className="text-xl font-bold text-gray-800 mb-2">Dr.{doctor.name}</h2>
+              <p className="text-teal-500 font-semibold mb-2">{doctor.spec.split("")[0].toUpperCase() + doctor.spec.slice(1)}</p>
               <p className="text-gray-600 mb-1">Degree: {doctor.deg}</p>
               <p className="text-gray-600 mb-1">Experience: {doctor.exp} years</p>
               <p className="text-gray-600 mb-1">Fee: ${doctor.fee}</p>
