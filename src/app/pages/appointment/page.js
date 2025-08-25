@@ -56,7 +56,7 @@ function Appointment() {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:4000/api/getemergencydoctors?department=${formData.department}`
+        `https://hospital-backend-production-7f96.up.railway.app/api/getemergencydoctors?department=${formData.department}`
       )
       .then((res) => setDoctors(res.data));
   }, [formData.department]);
