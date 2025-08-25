@@ -1,4 +1,7 @@
 "use client";
+
+import Link from "next/link";
+
 function Emergency() {
   return (
     <>
@@ -11,9 +14,11 @@ function Emergency() {
           attention. Whether it's a sudden illness or a critical situation, our
           expert team is ready to help you anytime, any day.
         </p>
+        <Link href="/pages/appointment">
         <button className="bg-transparent py-2 px-6 border-2 border-white text-white hover:bg-white transition duration-300 hover:text-[#3FBBC0] rounded-sm cursor-pointer">
           Make an Appointment
         </button>
+        </Link>
       </div>
     </>
   );
