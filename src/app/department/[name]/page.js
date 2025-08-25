@@ -44,7 +44,7 @@ function DepartmentPage({ params }) {
   const handleConfirm = async () => {
     const { name, email, phone } = form;
    try {
-    const res = await axios.post("http://localhost:4000/api/doctors/doctorappointment", {name,email,phone})
+    const res = await axios.post("https://hospital-backend-production-7f96.up.railway.app/api/doctors/doctorappointment", {name,email,phone})
     console.log(res.data);
     setShowModal(false);
     toast.success(res.data.message);

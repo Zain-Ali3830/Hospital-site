@@ -34,7 +34,7 @@ function Appointment() {
     console.log(updatedData);
     try {
       const result = await axios.post(
-        "http://localhost:4000/api/appointment",
+        "https://hospital-backend-production-7f96.up.railway.app/api/appointment",
         updatedData
       );
       // console.log('Result',result)
