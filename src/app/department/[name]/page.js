@@ -1,12 +1,12 @@
 'use client'
-import { useState, useEffect } from "react";
+import { useState, useEffect,use } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Toaster } from "react-hot-toast";
 import { AiOutlineClose } from "react-icons/ai";
-// import 'react-toastify/dist/ReactToastify.css';
 
 function DepartmentPage({ params }) {
+  const {name}=use(params)
   const [doctors, setDoctors] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [form, setForm] = useState({
@@ -14,16 +14,16 @@ function DepartmentPage({ params }) {
     email: "",
     phone: "",
     doctor: "",
-    department: params.name,
+    department: name,
     fee: "",
   });
 
   useEffect(() => {
-    axios.get(`http://localhost:4000/api/doctors/getdoctors?spec=${params.name}`)
+    axios.get(`http://localhost:4000/api/doctors/getdoctors?spec=${name}`)
       .then(res => {
         setDoctors(res.data);
       });
-  }, [params.name]);
+  }, [name]);
 
   const openModal = (doctor) => {
     setForm({
@@ -31,7 +31,7 @@ function DepartmentPage({ params }) {
       email: "",
       phone: "",
       doctor: doctor.name,
-      department: params.name,
+      department: name,
       fee: doctor.fee,
     });
     setShowModal(true);
@@ -41,14 +41,16 @@ function DepartmentPage({ params }) {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     const { name, email, phone } = form;
-    if (!name || !email || !phone) {
-      toast.error("Please fill the complete form!");
-      return;
-    }
+   try {
+    const res = await axios.post("http://localhost:4000/api/doctors/doctorappointment", {name,email,phone})
+    console.log(res.data);
     setShowModal(false);
-    toast.success("Appointment confirmed successfully!");
+    toast.success(res.data.message);
+   } catch (error) {
+    toast.error(error.response.data.message)
+   }
   };
 
   return (
