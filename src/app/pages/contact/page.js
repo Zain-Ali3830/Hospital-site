@@ -21,7 +21,7 @@ function Contact() {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "https://hospital-backend-production-7f96.up.railway.app/api/contact",
+        "http://localhost:4000/api/contact",
         formData
       );
       toast.success(res.data.message);

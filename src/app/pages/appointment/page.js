@@ -34,7 +34,7 @@ function Appointment() {
     console.log(updatedData);
     try {
       const result = await axios.post(
-        "https://hospital-backend-production-7f96.up.railway.app/api/appointment",
+        "http://localhost:4000/api/appointment",
         updatedData
       );
       // console.log('Result',result)
@@ -56,7 +56,7 @@ function Appointment() {
   useEffect(() => {
     axios
       .get(
-        `https://hospital-backend-production-7f96.up.railway.app/api/getemergencydoctors?department=${formData.department}`
+        `http://localhost:4000/api/getemergencydoctors?department=${formData.department}`
       )
       .then((res) => setDoctors(res.data));
   }, [formData.department]);
